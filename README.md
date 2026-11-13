@@ -31,8 +31,12 @@ Vì đây là tiện ích chưa đưa lên Cửa hàng Chrome, bạn cần cài 
 
 ### Các lệnh hỗ trợ (Commands):
 - `yt` - Tìm kiếm trên YouTube.
+- `gh` - Mở trực tiếp một đường dẫn GitHub.
+- `ask` - Tìm kiếm trên Perplexity AI.
+- `gpt` - Mở cuộc trò chuyện mới trên ChatGPT.
+- `cl` - Mở cuộc trò chuyện mới trên Claude.
+- -`gmn` - Mở cuộc trò chuyện mới trên Gemini.
 - `<số>` - Mở một tab đã ghim theo số thứ tự.
-
 ### Phím tắt nhanh (Shortcuts):
 Giống như Commands nhưng không cần dấu cách.
 - `:` - Truy cập `http://localhost:<cổng>` (Ví dụ: `:8000`).
