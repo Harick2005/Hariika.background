@@ -1,0 +1,16 @@
+{
+	"manifest_version": 3,
+	"name": "Clear Morning New Tab",
+	"version": "1.0.0",
+	"description": "Custom new tab page with search, weather, and background controls.",
+	"chrome_url_overrides": {
+		"newtab": "source/index.html"
+	},
+	"permissions": [
+		"geolocation"
+	],
+	"host_permissions": [
+		"https://api.open-meteo.com/*",
+		"https://search.saltyaom.com/*"
+	]
+}
