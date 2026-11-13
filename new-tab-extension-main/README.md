@@ -33,6 +33,7 @@ yt blue archive
 - `ask` - Search on Perplexity
 - `gpt` - Start a new ChatGPT conversation
 - `cl` - Start a new Claude conversation
+- `gmn` - Start a new Gemini conversation
 - `<number>` - Open a pinned tab by index
 
 ## Shortcut

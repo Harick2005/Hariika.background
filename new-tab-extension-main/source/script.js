@@ -1,4 +1,4 @@
-/**
+3/**
  * All icons underneath are from the Font Awesome Free 6.6.0 by @fontawesome
  * - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024
  * Fonticons, Inc.
@@ -76,11 +76,26 @@ const linkProviders = [
     {
         id: 'claude',
         name: 'Claude',
-        match: (search) => search.startsWith('cl '),
+        match: (search) => search === 'cl' || search.startsWith('cl '),
         link: (search) =>
-            `https://claude.ai/new?q=${search.slice(3)}`,
+            search.startsWith('cl ') && search.slice(3).trim()
+                ? `https://claude.ai/new?q=${encodeURIComponent(search.slice(3).trim())}`
+                : 'https://claude.ai/new',
         icon: () =>
             `<svg width="25" height="24" viewBox="0 0 25 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M4.75923 15.9601L9.47889 13.3119L9.55826 13.0819L9.47889 12.954H9.2489L8.46013 12.9054L5.76341 12.8325L3.42463 12.7353L1.15874 12.6138L0.588624 12.4924L0.0541382 11.7878L0.109207 11.4364L0.588624 11.1141L1.27536 11.174L2.79297 11.2776L5.0702 11.4347L6.72224 11.5319L9.16954 11.7862H9.55826L9.61332 11.6291L9.48051 11.5319L9.37686 11.4347L7.02026 9.83776L4.46931 8.15009L3.1331 7.1783L2.41073 6.68592L2.04631 6.22432L1.8892 5.2169L2.54516 4.49453L3.42625 4.55446L3.65138 4.61439L4.54381 5.30112L6.45014 6.77662L8.93955 8.61007L9.30397 8.91294L9.44974 8.80929L9.46756 8.7364L9.30397 8.46268L7.94994 6.01539L6.50521 3.52598L5.86221 2.49426L5.69215 1.87556C5.63222 1.62127 5.58849 1.40748 5.58849 1.14671L6.33515 0.132813L6.74816 0L7.74425 0.132813L8.16374 0.497234L8.78244 1.91281L9.78501 4.14145L11.3399 7.17182L11.795 8.07072L12.0379 8.90323L12.1286 9.15751H12.2857V9.01175L12.4137 7.30463L12.6502 5.2088L12.8802 2.51208L12.9595 1.75246L13.3353 0.842219L14.0819 0.349845L14.665 0.628426L15.1444 1.31516L15.078 1.75894L14.793 3.61182L14.2342 6.51424L13.8698 8.45782H14.0819L14.3249 8.21487L15.308 6.90944L16.9601 4.84438L17.6889 4.02484L18.5392 3.11945L19.085 2.68862H20.1168L20.8764 3.81752L20.5363 4.98367L19.4738 6.33122L18.5927 7.47308L17.3293 9.17371L16.5406 10.5342L16.6135 10.6427L16.8013 10.6249L19.6552 10.0175L21.1971 9.73897L23.037 9.42313L23.8695 9.81185L23.9602 10.207L23.633 11.0153L21.6652 11.5011L19.3571 11.9628L15.9202 12.7758L15.8781 12.8066L15.9267 12.8665L17.4751 13.0123L18.1376 13.0479H19.7588L22.7779 13.273L23.5666 13.7946L24.0396 14.4327L23.9602 14.9186L22.7455 15.5373L21.1064 15.1486L17.2808 14.2384L15.9688 13.9112H15.7874V14.0197L16.8807 15.0887L18.8842 16.8978L21.3931 19.2301L21.521 19.8067L21.1987 20.2618L20.8586 20.2133L18.6542 18.5547L17.8039 17.8081L15.8781 16.1868H15.7502V16.3569L16.194 17.0063L18.5376 20.5291L18.6591 21.6094L18.489 21.9609L17.8816 22.173L17.2144 22.0516L15.8425 20.1258L14.4269 17.9571L13.2851 16.0135L13.1458 16.0929L12.472 23.3505L12.1562 23.7214L11.4273 24L10.82 23.5384L10.4977 22.7917L10.82 21.3162L11.2087 19.3905L11.5245 17.8599L11.8096 15.9584L11.9796 15.3268L11.9683 15.2847L11.829 15.3025L10.3956 17.2703L8.21556 20.2165L6.49063 22.0629L6.07762 22.2265L5.36174 21.8556L5.42814 21.1931L5.8282 20.6036L8.21556 17.5667L9.65544 15.6847L10.5851 14.5979L10.5786 14.4408H10.5236L4.18263 18.558L3.05373 18.7037L2.56784 18.2486L2.62776 17.502L2.85776 17.259L4.76409 15.9471L4.75761 15.9536L4.75923 15.9601Z"/></svg>`
+    },
+    {
+        id: 'gemini',
+        name: 'Gemini',
+        match: (search) => search === 'gmn' || search.startsWith('gmn '),
+        link: (search) => {
+            const query = search.startsWith('gmn ') ? search.slice(4).trim() : ''
+            return query
+                ? `https://gemini.google.com/app?hl=vi&q=${encodeURIComponent(query)}`
+                : 'https://gemini.google.com/app?hl=vi'
+        },
+        icon: () =>
+            `<svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="icon"><path d="M12 24C12 17.3726 6.62742 12 0 12C6.62742 12 12 6.62742 12 0C12 6.62742 17.3726 12 24 12C17.3726 12 12 17.3726 12 24Z"/></svg>`
     }
 ]
 
@@ -671,7 +686,11 @@ document.addEventListener(
                 prefix = value.slice(0, 2) + ' '
                 value = value.slice(3)
             } else {
-                if (value.startsWith('gpt ') || value.startsWith('ask ')) {
+                if (
+                    value.startsWith('gpt ') ||
+                    value.startsWith('ask ') ||
+                    value.startsWith('gmn ')
+                ) {
                     prefix = value.slice(0, 3) + ' '
                     value = value.slice(4)
                 }
@@ -733,6 +752,7 @@ document.addEventListener(
 
         initTodoWidget()
         initTimerWidget()
+        initPinShortcuts()
 
         // const bg = id('bg')
         // window.addEventListener('focus', () => {
@@ -1560,6 +1580,10 @@ const initTimerWidget = () => {
         applyNewMinutes(customInput?.value)
     })
 
+    customInput?.addEventListener('change', () => {
+        applyNewMinutes(customInput.value)
+    })
+
     customInput?.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
             e.preventDefault()
@@ -1605,4 +1629,564 @@ const initTimerWidget = () => {
             timerPanel?.classList.add('is-hidden')
         }
     })
+}
+
+// ==========================================================================
+// 3. Custom Pins / Lối tắt trang web tùy chọn (Thêm link & ảnh tùy thích)
+// ==========================================================================
+const initPinShortcuts = () => {
+    const pinContainer = id('pin')
+    const addPinBtn = id('pin-add-btn')
+    const menuManageBtn = id('pin-manage-menu-btn')
+
+    const pinModal = id('pin-modal')
+    const pinCloseBtn = id('pin-modal-close')
+    const pinCancelBtn = id('pin-modal-cancel')
+    const pinSaveBtn = id('pin-modal-save')
+
+    const tabAdd = id('pin-tab-add')
+    const tabList = id('pin-tab-list')
+    const panelAdd = id('pin-panel-add')
+    const panelList = id('pin-panel-list')
+    const previewContainer = id('pin-preview-container')
+
+    const inputName = id('pin-input-name')
+    const inputUrl = id('pin-input-url')
+    const selectGroup = id('pin-select-group')
+    const inputFile = id('pin-file-input')
+    const btnUpload = id('pin-upload-img-btn')
+    const btnAutoFavicon = id('pin-auto-favicon-btn')
+    const inputImgUrl = id('pin-input-img-url')
+
+    const previewImg = id('pin-preview-img')
+    const previewPlaceholder = id('pin-preview-icon-placeholder')
+    const previewNameText = id('pin-preview-name-text')
+    const previewUrlText = id('pin-preview-url-text')
+
+    const customCountEl = id('pin-custom-count')
+    const customListItemsEl = id('pin-custom-list-items')
+
+    let currentCustomIcon = ''
+
+    // Helper: get saved custom pins
+    const getSavedPins = () => {
+        try {
+            return JSON.parse(localStorage.getItem('custom_pins') || '[]')
+        } catch {
+            return []
+        }
+    }
+
+    const savePins = (pins) => {
+        localStorage.setItem('custom_pins', JSON.stringify(pins))
+    }
+
+    // Helper: auto favicon from url
+    const getFaviconUrl = (urlStr) => {
+        try {
+            let fullUrl = urlStr.trim()
+            if (!fullUrl) return ''
+            if (!fullUrl.startsWith('http://') && !fullUrl.startsWith('https://')) {
+                fullUrl = 'https://' + fullUrl
+            }
+            const domain = new URL(fullUrl).hostname
+            if (!domain) return ''
+            return `https://www.google.com/s2/favicons?domain=${domain}&sz=128`
+        } catch {
+            return ''
+        }
+    }
+
+    // Helper: compress/resize image to data URL for fast loading and low storage
+    const processImageFile = (file) =>
+        new Promise((resolve) => {
+            const reader = new FileReader()
+            reader.onload = (e) => {
+                const result = e.target.result
+                if (file.type === 'image/svg+xml') {
+                    resolve(result)
+                    return
+                }
+                const img = new Image()
+                img.onload = () => {
+                    const canvas = document.createElement('canvas')
+                    const maxDim = 128
+                    let w = img.width
+                    let h = img.height
+                    if (w > h) {
+                        if (w > maxDim) {
+                            h = Math.round((h * maxDim) / w)
+                            w = maxDim
+                        }
+                    } else {
+                        if (h > maxDim) {
+                            w = Math.round((w * maxDim) / h)
+                            h = maxDim
+                        }
+                    }
+                    canvas.width = w
+                    canvas.height = h
+                    const ctx = canvas.getContext('2d')
+                    ctx.drawImage(img, 0, 0, w, h)
+                    resolve(canvas.toDataURL('image/png'))
+                }
+                img.onerror = () => resolve(result)
+                img.src = result
+            }
+            reader.onerror = () => resolve('')
+            reader.readAsDataURL(file)
+        })
+
+    // Update live preview in modal
+    const updatePreview = () => {
+        const nameVal = inputName?.value.trim() || 'Tên trang web'
+        let urlVal = inputUrl?.value.trim() || 'https://example.com'
+
+        if (previewNameText) previewNameText.textContent = nameVal
+        if (previewUrlText) previewUrlText.textContent = urlVal
+
+        let iconSrc = currentCustomIcon || inputImgUrl?.value.trim()
+        if (!iconSrc && inputUrl?.value.trim()) {
+            iconSrc = getFaviconUrl(inputUrl.value.trim())
+        }
+
+        if (iconSrc) {
+            if (previewImg) {
+                previewImg.src = iconSrc
+                previewImg.classList.remove('is-hidden')
+            }
+            if (previewPlaceholder) previewPlaceholder.classList.add('is-hidden')
+        } else {
+            if (previewImg) {
+                previewImg.src = ''
+                previewImg.classList.add('is-hidden')
+            }
+            if (previewPlaceholder) previewPlaceholder.classList.remove('is-hidden')
+        }
+    }
+
+    // Render pins into DOM
+    const renderPins = () => {
+        // Remove existing dynamic groups and dividers
+        pinContainer?.querySelectorAll('.pin-group').forEach((el) => el.remove())
+        pinContainer?.querySelectorAll('.pin-divider').forEach((el) => el.remove())
+        pinContainer?.querySelectorAll('.pin-custom').forEach((el) => el.remove())
+
+        const pins = getSavedPins()
+        if (customCountEl) customCountEl.textContent = pins.length
+
+        const groupOrder = ['study', 'entertainment', 'work', 'custom']
+        const groupMap = {
+            study: [],
+            entertainment: [],
+            work: [],
+            custom: []
+        }
+
+        pins.forEach((pin) => {
+            const g = pin.group || 'study'
+            if (!groupMap[g]) groupMap[g] = []
+            groupMap[g].push(pin)
+        })
+
+        let renderedGroupCount = 0
+
+        groupOrder.forEach((gKey) => {
+            const groupPins = groupMap[gKey] || []
+            if (groupPins.length === 0) return
+
+            // If not the first group rendered, insert a divider
+            if (renderedGroupCount > 0) {
+                const divider = document.createElement('div')
+                divider.className = 'pin-divider'
+                if (addPinBtn) {
+                    pinContainer.insertBefore(divider, addPinBtn)
+                } else {
+                    pinContainer.appendChild(divider)
+                }
+            }
+
+            const groupDiv = document.createElement('div')
+            groupDiv.className = 'pin-group'
+            groupDiv.dataset.group = gKey
+
+            groupPins.forEach((pin) => {
+                const a = document.createElement('a')
+                a.href = pin.url
+                a.title = `${pin.title} (Chuột phải để xóa)`
+                a.className = 'pin-custom'
+                a.dataset.id = pin.id
+
+                const img = document.createElement('img')
+                img.src = pin.icon || getFaviconUrl(pin.url)
+                img.alt = pin.title
+                img.onerror = () => {
+                    const fb = getFaviconUrl(pin.url)
+                    if (fb && img.src !== fb) img.src = fb
+                }
+                a.appendChild(img)
+
+                // Right click contextmenu to delete
+                a.addEventListener('contextmenu', (e) => {
+                    e.preventDefault()
+                    if (confirm(`Bạn có muốn xóa nút lối tắt "${pin.title}" không?`)) {
+                        deletePin(pin.id)
+                    }
+                })
+
+                groupDiv.appendChild(a)
+            })
+
+            if (addPinBtn) {
+                pinContainer.insertBefore(groupDiv, addPinBtn)
+            } else {
+                pinContainer.appendChild(groupDiv)
+            }
+
+            renderedGroupCount++
+        })
+
+        renderModalList(pins)
+    }
+
+    const DEFAULT_PINS = [
+        {
+            id: 'default_gh',
+            title: 'GitHub',
+            url: 'https://github.com',
+            icon: 'https://github.githubassets.com/favicons/favicon.svg',
+            group: 'study'
+        },
+        {
+            id: 'default_lhu_learn',
+            title: 'Learn LHU',
+            url: 'https://learn.lhu.edu.vn/my/',
+            icon: 'https://www.google.com/s2/favicons?domain=learn.lhu.edu.vn&sz=128',
+            group: 'study'
+        },
+        {
+            id: 'default_lhu_me',
+            title: 'Me LHU',
+            url: 'https://me.lhu.edu.vn/',
+            icon: 'https://www.google.com/s2/favicons?domain=me.lhu.edu.vn&sz=128',
+            group: 'study'
+        },
+        {
+            id: 'default_gemini',
+            title: 'Gemini',
+            url: 'https://gemini.google.com/app?hl=vi',
+            icon: 'https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg',
+            group: 'study'
+        },
+        {
+            id: 'default_fb',
+            title: 'Facebook',
+            url: 'https://facebook.com',
+            icon: 'https://www.google.com/s2/favicons?domain=facebook.com&sz=128',
+            group: 'entertainment'
+        },
+        {
+            id: 'default_tiktok',
+            title: 'TikTok',
+            url: 'https://www.tiktok.com/',
+            icon: 'https://www.google.com/s2/favicons?domain=tiktok.com&sz=128',
+            group: 'entertainment'
+        },
+        {
+            id: 'default_yt',
+            title: 'YouTube',
+            url: 'https://youtube.com',
+            icon: 'https://www.google.com/s2/favicons?domain=youtube.com&sz=128',
+            group: 'entertainment'
+        },
+        {
+            id: 'default_animehay',
+            title: 'AnimeHay',
+            url: 'https://animehay16.site/#',
+            icon: 'https://www.google.com/s2/favicons?domain=animehay16.site&sz=128',
+            group: 'entertainment'
+        },
+        {
+            id: 'default_chotot',
+            title: 'Chợ Tốt',
+            url: 'https://www.chotot.com/',
+            icon: 'https://www.google.com/s2/favicons?domain=chotot.com&sz=128',
+            group: 'work'
+        },
+        {
+            id: 'default_tele',
+            title: 'Telegram',
+            url: 'https://web.telegram.org/a/',
+            icon: 'https://www.google.com/s2/favicons?domain=telegram.org&sz=128',
+            group: 'work'
+        },
+        {
+            id: 'default_tgdd',
+            title: 'Thế Giới Di Động',
+            url: 'https://www.thegioididong.com/',
+            icon: 'https://www.google.com/s2/favicons?domain=thegioididong.com&sz=128',
+            group: 'work'
+        }
+    ]
+
+    const renderModalList = (pins) => {
+        if (!customListItemsEl) return
+        customListItemsEl.innerHTML = ''
+
+        if (pins.length === 0) {
+            const empty = document.createElement('div')
+            empty.className = 'pin-list-empty'
+            empty.innerHTML = `
+                <p>Chưa có lối tắt nào trên màn hình.</p>
+                <p style="font-size: 11px; margin-top: 6px; opacity: 0.7;">Bấm tab <strong>"Thêm lối tắt mới"</strong> để thêm trang bạn muốn, hoặc bấm nút dưới để lấy lại các trang mẫu.</p>
+                <button id="pin-restore-defaults-btn" class="modal-secondary" type="button" style="margin-top: 12px; font-size: 12px; padding: 6px 14px;">
+                    Khôi phục 11 lối tắt mẫu ban đầu
+                </button>
+            `
+            customListItemsEl.appendChild(empty)
+
+            empty.querySelector('#pin-restore-defaults-btn')?.addEventListener('click', () => {
+                savePins(DEFAULT_PINS)
+                renderPins()
+            })
+            return
+        }
+
+        const groupLabels = {
+            study: 'Học tập',
+            entertainment: 'Giải trí',
+            work: 'Công việc',
+            custom: 'Nhóm riêng'
+        }
+
+        pins.forEach((pin) => {
+            const item = document.createElement('div')
+            item.className = 'pin-list-item'
+
+            const iconBox = document.createElement('div')
+            iconBox.className = 'pin-list-icon'
+            const img = document.createElement('img')
+            img.src = pin.icon || getFaviconUrl(pin.url)
+            img.alt = pin.title
+            iconBox.appendChild(img)
+
+            const details = document.createElement('div')
+            details.className = 'pin-list-details'
+
+            const titleRow = document.createElement('div')
+            titleRow.className = 'pin-list-title'
+            titleRow.textContent = pin.title
+
+            const badge = document.createElement('span')
+            badge.className = 'pin-list-badge'
+            badge.textContent = groupLabels[pin.group] || 'Khác'
+            titleRow.appendChild(badge)
+
+            const urlText = document.createElement('div')
+            urlText.className = 'pin-list-url'
+            urlText.textContent = pin.url
+
+            details.appendChild(titleRow)
+            details.appendChild(urlText)
+
+            const delBtn = document.createElement('button')
+            delBtn.className = 'pin-list-delete-btn'
+            delBtn.type = 'button'
+            delBtn.textContent = 'Xóa'
+            delBtn.addEventListener('click', () => {
+                deletePin(pin.id)
+            })
+
+            item.appendChild(iconBox)
+            item.appendChild(details)
+            item.appendChild(delBtn)
+
+            customListItemsEl.appendChild(item)
+        })
+    }
+
+    const deletePin = (id) => {
+        let pins = getSavedPins()
+        pins = pins.filter((p) => p.id !== id)
+        savePins(pins)
+        renderPins()
+    }
+
+    // Modal navigation
+    const openModal = (targetTab = 'add') => {
+        if (!pinModal) return
+        pinModal.classList.add('is-open')
+        pinModal.setAttribute('aria-hidden', 'false')
+        setActiveTab(targetTab)
+        if (targetTab === 'add') {
+            resetForm()
+            setTimeout(() => inputUrl?.focus(), 50)
+        }
+    }
+
+    const closeModal = () => {
+        if (!pinModal) return
+        pinModal.classList.remove('is-open')
+        pinModal.setAttribute('aria-hidden', 'true')
+    }
+
+    const setActiveTab = (tab) => {
+        const isAdd = tab === 'add'
+        tabAdd?.classList.toggle('is-active', isAdd)
+        tabList?.classList.toggle('is-active', !isAdd)
+        tabAdd?.setAttribute('aria-selected', String(isAdd))
+        tabList?.setAttribute('aria-selected', String(!isAdd))
+
+        panelAdd?.classList.toggle('is-active', isAdd)
+        panelList?.classList.toggle('is-active', !isAdd)
+
+        if (previewContainer) {
+            previewContainer.style.display = isAdd ? 'grid' : 'none'
+        }
+
+        if (pinSaveBtn) {
+            pinSaveBtn.style.display = isAdd ? 'inline-block' : 'none'
+        }
+    }
+
+    const resetForm = () => {
+        if (inputName) inputName.value = ''
+        if (inputUrl) inputUrl.value = ''
+        if (inputImgUrl) inputImgUrl.value = ''
+        if (selectGroup) selectGroup.value = 'study'
+        currentCustomIcon = ''
+        updatePreview()
+    }
+
+    // Listeners
+    addPinBtn?.addEventListener('click', (e) => {
+        e.stopPropagation()
+        openModal('add')
+    })
+
+    menuManageBtn?.addEventListener('click', (e) => {
+        e.stopPropagation()
+        id('settings-dropdown')?.classList.add('is-hidden')
+        openModal('list')
+    })
+
+    pinCloseBtn?.addEventListener('click', closeModal)
+    pinCancelBtn?.addEventListener('click', closeModal)
+    pinModal?.addEventListener('click', (e) => {
+        if (e.target?.dataset?.close) closeModal()
+    })
+
+    tabAdd?.addEventListener('click', () => setActiveTab('add'))
+    tabList?.addEventListener('click', () => setActiveTab('list'))
+
+    inputUrl?.addEventListener('input', () => {
+        const url = inputUrl.value.trim()
+        if (url && (!inputName.value.trim() || inputName.dataset.autofilled === 'true')) {
+            try {
+                let full = url
+                if (!full.startsWith('http://') && !full.startsWith('https://')) {
+                    full = 'https://' + full
+                }
+                const domain = new URL(full).hostname.replace(/^www\./, '')
+                const capitalized = domain.split('.')[0]
+                if (capitalized) {
+                    inputName.value = capitalized.charAt(0).toUpperCase() + capitalized.slice(1)
+                    inputName.dataset.autofilled = 'true'
+                }
+            } catch (_) {}
+        }
+        updatePreview()
+    })
+
+    inputName?.addEventListener('input', () => {
+        inputName.dataset.autofilled = 'false'
+        updatePreview()
+    })
+
+    inputImgUrl?.addEventListener('input', () => {
+        currentCustomIcon = ''
+        updatePreview()
+    })
+
+    btnUpload?.addEventListener('click', () => inputFile?.click())
+
+    inputFile?.addEventListener('change', async () => {
+        const file = inputFile.files?.[0]
+        if (!file) return
+        const dataUrl = await processImageFile(file)
+        if (dataUrl) {
+            currentCustomIcon = dataUrl
+            if (inputImgUrl) inputImgUrl.value = ''
+            updatePreview()
+        }
+        inputFile.value = ''
+    })
+
+    btnAutoFavicon?.addEventListener('click', () => {
+        const url = inputUrl?.value.trim()
+        if (!url) {
+            alert('Vui lòng nhập đường dẫn URL trước!')
+            inputUrl?.focus()
+            return
+        }
+        const fav = getFaviconUrl(url)
+        if (fav) {
+            currentCustomIcon = fav
+            if (inputImgUrl) inputImgUrl.value = fav
+            updatePreview()
+        }
+    })
+
+    pinSaveBtn?.addEventListener('click', () => {
+        let urlVal = inputUrl?.value.trim()
+        if (!urlVal) {
+            alert('Vui lòng nhập đường dẫn trang web (URL)!')
+            inputUrl?.focus()
+            return
+        }
+
+        if (!urlVal.startsWith('http://') && !urlVal.startsWith('https://')) {
+            urlVal = 'https://' + urlVal
+        }
+
+        let nameVal = inputName?.value.trim()
+        if (!nameVal) {
+            try {
+                const domain = new URL(urlVal).hostname.replace(/^www\./, '')
+                nameVal = domain.charAt(0).toUpperCase() + domain.slice(1)
+            } catch {
+                nameVal = 'Trang web'
+            }
+        }
+
+        let iconVal = currentCustomIcon || inputImgUrl?.value.trim()
+        if (!iconVal) {
+            iconVal = getFaviconUrl(urlVal) || ''
+        }
+
+        const newPin = {
+            id: 'pin_' + Date.now(),
+            title: nameVal,
+            url: urlVal,
+            icon: iconVal,
+            group: selectGroup?.value || 'study'
+        }
+
+        const pins = getSavedPins()
+        pins.push(newPin)
+        savePins(pins)
+        renderPins()
+
+        closeModal()
+    })
+
+    // Keyboard ESC to close
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && pinModal?.classList.contains('is-open')) {
+            closeModal()
+        }
+    })
+
+    // Initial render
+    renderPins()
 }

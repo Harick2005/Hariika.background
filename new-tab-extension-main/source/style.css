@@ -337,6 +337,45 @@ html {
     box-sizing: border-box;
 }
 
+#pin a > img,
+#pin button > img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 9px;
+    box-sizing: border-box;
+    object-fit: contain;
+    border-radius: inherit;
+    pointer-events: none;
+}
+
+.pin-add-btn {
+    appearance: none;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.7);
+    width: 44px;
+    height: 44px;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.125);
+    border: 1px dashed rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(8px);
+    cursor: pointer;
+    transition: all 0.15s ease-out;
+    margin-left: 2px;
+}
+
+.pin-add-btn:hover,
+.pin-add-btn:focus {
+    color: #fff;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.75);
+    background-color: rgba(255, 255, 255, 0.18);
+    transform: scale(1.15);
+}
+
 @media (max-width: 640px) {
     #pin {
         gap: 8px;
@@ -346,7 +385,8 @@ html {
         gap: 6px;
     }
     #pin a,
-    #pin button {
+    #pin button,
+    .pin-add-btn {
         width: 38px;
         height: 38px;
         border-radius: 18px;
@@ -354,6 +394,10 @@ html {
     #pin a > svg,
     #pin button > svg {
         padding: 8px;
+    }
+    #pin a > img,
+    #pin button > img {
+        padding: 7px;
     }
     .pin-divider {
         height: 20px;
@@ -368,7 +412,8 @@ html {
         gap: 4px;
     }
     #pin a,
-    #pin button {
+    #pin button,
+    .pin-add-btn {
         width: 32px;
         height: 32px;
         border-radius: 16px;
@@ -376,6 +421,10 @@ html {
     #pin a > svg,
     #pin button > svg {
         padding: 6px;
+    }
+    #pin a > img,
+    #pin button > img {
+        padding: 5px;
     }
     .pin-divider {
         height: 18px;
@@ -397,6 +446,12 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.input-search-element-inner img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
 }
 
 .transition {
@@ -1033,7 +1088,7 @@ html {
 }
 
 .timer-dropdown {
-    width: 260px;
+    width: 270px;
     padding: 14px;
     border-radius: 16px;
     max-height: 85vh;
@@ -1106,9 +1161,10 @@ html {
 .timer-custom-row {
     display: flex;
     align-items: center;
-    gap: 6px;
+    justify-content: space-between;
+    gap: 8px;
     margin-bottom: 12px;
-    padding: 8px 10px;
+    padding: 7px 10px;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 10px;
@@ -1116,47 +1172,75 @@ html {
 
 .timer-custom-label {
     font-size: 12px;
+    font-weight: 500;
     color: rgba(255, 255, 255, 0.75);
     white-space: nowrap;
 }
 
-.timer-stepper {
+.timer-custom-controls {
     display: flex;
     align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.timer-stepper {
+    display: inline-flex;
+    align-items: center;
+    height: 28px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 8px;
+    background: rgba(0, 0, 0, 0.35);
     overflow: hidden;
-    background: rgba(0, 0, 0, 0.3);
 }
 
 .timer-step-btn {
     appearance: none;
     border: 0;
     background: transparent;
-    color: #fff;
-    width: 24px;
-    height: 26px;
-    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    width: 26px;
+    height: 28px;
+    padding: 0;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.15s;
+    transition: all 0.15s;
+    flex-shrink: 0;
 }
 
 .timer-step-btn:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.18);
+    color: #fff;
+}
+
+.timer-step-btn:active {
+    background-color: rgba(255, 255, 255, 0.28);
+}
+
+.timer-input-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 0 4px;
+    height: 28px;
 }
 
 #timer-custom-input {
-    width: 38px;
-    height: 26px;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    padding: 0;
+    margin: 0;
     border: 0;
     background: transparent;
     color: #fff;
     text-align: center;
     font-size: 13px;
     font-weight: 600;
+    font-family: inherit;
     outline: none;
     -moz-appearance: textfield;
 }
@@ -1168,25 +1252,36 @@ html {
 }
 
 .timer-unit {
-    font-size: 12px;
+    font-size: 11px;
     color: rgba(255, 255, 255, 0.6);
+    user-select: none;
+    line-height: 1;
 }
 
 .timer-apply-btn {
     appearance: none;
-    margin-left: auto;
-    padding: 4px 10px;
-    border-radius: 6px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    background: rgba(255, 255, 255, 0.15);
+    height: 28px;
+    line-height: 26px;
+    padding: 0 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.12);
     color: #fff;
     font-size: 12px;
+    font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.15s;
+    transition: all 0.15s;
+    flex-shrink: 0;
+    white-space: nowrap;
 }
 
 .timer-apply-btn:hover {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.45);
+}
+
+.timer-apply-btn:active {
+    transform: scale(0.96);
 }
 
 /* Sound settings section */
@@ -1383,4 +1478,196 @@ html {
 .timer-action-secondary:hover {
     background: rgba(255, 255, 255, 0.2);
     transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   Pin Shortcut Modal & Management styles
+   ========================================================================== */
+
+.pin-modal-dialog {
+    max-width: 680px;
+}
+
+.pin-icon-actions {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.pin-icon-actions .modal-action {
+    flex: 1;
+    padding: 8px 10px;
+    font-size: 13px;
+    text-align: center;
+}
+
+.pin-preview-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 150px;
+    padding: 16px;
+}
+
+.pin-preview-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+}
+
+.pin-mock-button {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 22px;
+    background-color: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.pin-mock-button img {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    object-fit: contain;
+    border-radius: inherit;
+}
+
+.pin-mock-button span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.pin-preview-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    max-width: 220px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pin-preview-url {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.5);
+    max-width: 240px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#pin-panel-list.is-active {
+    grid-column: 1 / -1;
+    display: block;
+}
+
+.pin-list-wrap {
+    max-height: 300px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-right: 4px;
+}
+
+.pin-list-empty {
+    text-align: center;
+    padding: 36px 12px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 13px;
+}
+
+.pin-list-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transition: background 0.15s;
+}
+
+.pin-list-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.pin-list-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 16px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.pin-list-icon img {
+    width: 100%;
+    height: 100%;
+    padding: 6px;
+    object-fit: contain;
+}
+
+.pin-list-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.pin-list-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pin-list-badge {
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 99px;
+    background: rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 400;
+}
+
+.pin-list-url {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.5);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pin-list-delete-btn {
+    appearance: none;
+    border: 0;
+    background: rgba(239, 68, 68, 0.2);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    color: #fca5a5;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+    flex-shrink: 0;
+}
+
+.pin-list-delete-btn:hover {
+    background: rgba(239, 68, 68, 0.45);
+    color: #fff;
 }
